@@ -1,0 +1,10 @@
+{
+  "name": "directbrakesyyc-one-page-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "node --check js/main.js && node --check scripts/check-static-site.js",
+    "test": "node -e \"console.log('No active unit tests: package route prices are static configuration.')\"",
+    "build": "node scripts/check-static-site.js"
+  }
+}
