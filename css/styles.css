@@ -2643,6 +2643,10 @@ legend {
     gap: 0.6rem;
   }
 
+  .step-card-wide {
+    grid-column: 1 / -1;
+  }
+
   .price-table-head {
     display: grid;
   }
