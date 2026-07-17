@@ -2758,6 +2758,10 @@ legend {
     align-items: start;
   }
 
+  .process-layout {
+    grid-template-columns: 1fr;
+  }
+
   .package-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
