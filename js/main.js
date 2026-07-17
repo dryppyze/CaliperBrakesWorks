@@ -56,7 +56,7 @@ const PRICE_CONFIG = {
 };
 
 const routeLabels = {
-  supply: "Parts + labour",
+  supply: "We supply the parts",
   customer: "Bring Your Own Parts"
 };
 
@@ -201,7 +201,7 @@ function setupRouteToggleObserver() {
 
 setHeaderState();
 setStaticPrices();
-setPackageRoute("supply");
+setPackageRoute("customer");
 setupRouteToggleObserver();
 
 window.addEventListener("scroll", setHeaderState, { passive: true });
