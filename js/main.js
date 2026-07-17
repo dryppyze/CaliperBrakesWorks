@@ -8,6 +8,7 @@ const routeToggle = document.querySelector(".route-toggle");
 const routeButtons = document.querySelectorAll("[data-route-option]");
 const packagePrices = document.querySelectorAll("[data-package-price]");
 const mobilePrices = document.querySelectorAll("[data-mobile-price]");
+const staticPrices = document.querySelectorAll("[data-static-price]");
 const packageBars = document.querySelectorAll(".vehicle-bars");
 const routeLabel = document.querySelector("[data-route-label]");
 const routeNote = document.querySelector("[data-route-note]");
@@ -17,7 +18,11 @@ const nextStepCta = document.querySelector(".package-cta");
 let routeToggleObserver;
 let stickyTextIdleTimer;
 
-const packageRanges = {
+const PRICE_CONFIG = {
+  static: {
+    "hardware-adjustment": "$35-$90",
+    "hardware-adjustment-text": "$35 to $90"
+  },
   supply: {
     prices: {
       "minimum-sedan": "$139 to $179",
@@ -31,7 +36,7 @@ const packageRanges = {
       "bundle-truck": "$469 to $829"
     },
     note:
-      "Supply + install includes a supplier parts allowance. The parts cost is paid upfront before ordering. Vehicle type, front vs rear pair, supplier price changes, rotor size, oil type, rust, seized hardware, and electronic parking brake setup can move the final estimate. No added work happens without approval."
+      "Parts + labour ranges include a supplier parts allowance. Vehicle-specific parts are paid before ordering. Labour is paid after service. Vehicle type, front or rear axle, supplier pricing, rotor size, rust, seized hardware, and electronic parking brake setup can move the written estimate."
   },
   customer: {
     prices: {
@@ -46,13 +51,13 @@ const packageRanges = {
       "bundle-truck": "$309 to $379"
     },
     note:
-      "Bring-your-own-parts pricing is labour-focused. Fitment and compatibility are at your own risk and expense. Wrong, missing, unsafe, or poor-fit parts can pause the job, add labour time, or require rescheduling."
+      "Bring Your Own Parts pricing is labour only. Fitment and compatibility are at your own risk and expense. Wrong, missing, unsafe, or poor-fit parts can pause the job, add labour time, or require rescheduling."
   }
 };
 
 const routeLabels = {
   supply: "Parts + labour",
-  customer: "Labour only"
+  customer: "Bring Your Own Parts"
 };
 
 const BAR_MAX = 1000;
@@ -92,8 +97,8 @@ function trackEvent(name, detail = {}) {
 }
 
 function setPackageRoute(route) {
-  const selectedRoute = packageRanges[route] ? route : "supply";
-  const selectedData = packageRanges[selectedRoute];
+  const selectedRoute = PRICE_CONFIG[route] ? route : "supply";
+  const selectedData = PRICE_CONFIG[selectedRoute];
 
   routeButtons.forEach((button) => {
     const isSelected = button.dataset.routeOption === selectedRoute;
@@ -124,6 +129,15 @@ function setPackageRoute(route) {
   }
 
   updatePackageBars();
+}
+
+function setStaticPrices() {
+  staticPrices.forEach((price) => {
+    const key = price.dataset.staticPrice;
+    if (PRICE_CONFIG.static[key]) {
+      price.textContent = PRICE_CONFIG.static[key];
+    }
+  });
 }
 
 function compactRange(value) {
@@ -186,6 +200,7 @@ function setupRouteToggleObserver() {
 }
 
 setHeaderState();
+setStaticPrices();
 setPackageRoute("supply");
 setupRouteToggleObserver();
 

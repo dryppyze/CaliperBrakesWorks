@@ -1303,7 +1303,7 @@ section[id] {
 
 .vehicle-bars div {
   display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
+  grid-template-columns: minmax(94px, 0.95fr) minmax(0, 1fr);
   gap: 0.35rem 0.75rem;
   align-items: center;
 }
@@ -1344,6 +1344,17 @@ section[id] {
   border-radius: var(--radius-small);
   font-size: 0.91rem;
   line-height: 1.35;
+}
+
+.pricing-range-note {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  color: var(--muted-strong);
+  background: #f7f9fb;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-small);
+  font-size: 0.93rem;
+  line-height: 1.4;
 }
 
 .mobile-route-summary {
@@ -2543,7 +2554,7 @@ legend {
   }
 
   .vehicle-bars div {
-    grid-template-columns: 52px minmax(0, 1fr);
+    grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1fr);
     gap: 0.28rem 0.6rem;
   }
 
