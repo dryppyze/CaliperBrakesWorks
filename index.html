@@ -193,7 +193,7 @@
         ]
       }
     </script>
-    <link rel="stylesheet" href="css/styles.css?v=mobile-route-2">
+    <link rel="stylesheet" href="css/styles.css?v=sticky-route-1">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -293,28 +293,30 @@
               <p>You approve a written estimate for the result, not an open-ended hourly clock. Inspection changes are reviewed before the approved amount changes.</p>
             </div>
 
-            <div class="route-toggle" aria-label="Parts route selection">
-              <button class="route-option is-selected" type="button" data-route-option="customer" aria-pressed="true">
-                <span>Bring Your Own Parts</span>
-                <strong>Labour only</strong>
-                <small>Fitment and compatibility are your risk and expense.</small>
-              </button>
-              <button class="route-option" type="button" data-route-option="supply" aria-pressed="false">
-                <span>WE SUPPLY THE PARTS</span>
-                <strong>Parts + labour</strong>
-                <small>Vehicle-specific parts are paid before ordering. Labour is paid after service.</small>
-              </button>
-            </div>
+            <div class="route-selection-sticky">
+              <div class="route-toggle" aria-label="Parts route selection">
+                <button class="route-option is-selected" type="button" data-route-option="customer" aria-pressed="true">
+                  <span>Bring Your Own Parts</span>
+                  <strong>Labour only</strong>
+                  <small>Fitment and compatibility are your risk and expense.</small>
+                </button>
+                <button class="route-option" type="button" data-route-option="supply" aria-pressed="false">
+                  <span>WE SUPPLY THE PARTS</span>
+                  <strong>Parts + labour</strong>
+                  <small>Vehicle-specific parts are paid before ordering. Labour is paid after service.</small>
+                </button>
+              </div>
 
-            <div class="axle-toggle" aria-label="Wheel count estimate selection">
-              <button class="axle-option is-selected" type="button" data-axle-option="full" aria-pressed="true">
-                <span>All 4 wheels</span>
-                <strong>Front and rear combined</strong>
-              </button>
-              <button class="axle-option" type="button" data-axle-option="pair" aria-pressed="false">
-                <span>2 wheels only</span>
-                <strong>Front or rear pair</strong>
-              </button>
+              <div class="axle-toggle" aria-label="Wheel count estimate selection">
+                <button class="axle-option is-selected" type="button" data-axle-option="full" aria-pressed="true">
+                  <span>All 4 wheels</span>
+                  <strong>Front and rear combined</strong>
+                </button>
+                <button class="axle-option" type="button" data-axle-option="pair" aria-pressed="false">
+                  <span>2 wheels only</span>
+                  <strong>Front or rear pair</strong>
+                </button>
+              </div>
             </div>
 
             <div class="mobile-route-summary" data-mobile-route-summary aria-live="polite">
@@ -674,6 +676,6 @@
       <a href="tel:+15879978443" data-track-event="sticky_call_clicked"><span class="button-icon" aria-hidden="true">📞</span>Call</a>
     </div>
 
-    <script src="js/main.js?v=mobile-route-2"></script>
+    <script src="js/main.js?v=sticky-route-1"></script>
   </body>
 </html>
