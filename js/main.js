@@ -30,30 +30,30 @@ const PRICE_CONFIG = {
   },
   supply: {
     prices: {
-      "minimum-sedan": "$139 to $179",
-      "minimum-suv": "$159 to $219",
-      "minimum-truck": "$309 to $344",
-      "rotor-sedan": "$200 to $324",
-      "rotor-suv": "$249 to $489",
-      "rotor-truck": "$359 to $399",
-      "bundle-sedan": "$275 to $429",
-      "bundle-suv": "$339 to $609",
-      "bundle-truck": "$479 to $549"
+      "minimum-sedan": "$159 to $190",
+      "minimum-suv": "$185 to $216",
+      "minimum-truck": "$209 to $240",
+      "rotor-sedan": "$249 to $359",
+      "rotor-suv": "$319 to $409",
+      "rotor-truck": "$349 to $541",
+      "bundle-sedan": "$289 to $429",
+      "bundle-suv": "$359 to $479",
+      "bundle-truck": "$389 to $611"
     },
     note:
       "Parts + labour ranges include a supplier parts allowance. Vehicle-specific parts are paid before ordering. Labour is paid after service. Vehicle type, wheel count, supplier pricing, rotor size, rust, seized hardware, and electronic parking brake setup can move the written estimate."
   },
   customer: {
     prices: {
-      "minimum-sedan": "$99 to $119",
-      "minimum-suv": "$119 to $149",
-      "minimum-truck": "$139 to $174",
+      "minimum-sedan": "$99 to $130",
+      "minimum-suv": "$109 to $143",
+      "minimum-truck": "$129 to $169",
       "rotor-sedan": "$129 to $159",
       "rotor-suv": "$159 to $189",
       "rotor-truck": "$189 to $229",
-      "bundle-sedan": "$214 to $249",
-      "bundle-suv": "$249 to $309",
-      "bundle-truck": "$309 to $379"
+      "bundle-sedan": "$159 to $189",
+      "bundle-suv": "$189 to $219",
+      "bundle-truck": "$219 to $259"
     },
     note:
       "Bring Your Own Parts pricing is labour only. Fitment and compatibility are at your own risk and expense. Wrong, missing, unsafe, or poor-fit parts can pause the job, add labour time, or require rescheduling."
@@ -65,7 +65,7 @@ const routeLabels = {
   customer: "Bring Your Own Parts"
 };
 
-const BAR_MAX = 1000;
+const BAR_MAX = 1250;
 
 function setHeaderState() {
   if (!header) return;
