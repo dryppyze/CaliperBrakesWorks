@@ -4,7 +4,7 @@ const navLinks = document.querySelector("[data-nav-links]");
 const quickStickyCta = document.querySelector(".quick-sticky-cta");
 const stickyPriceButton = quickStickyCta?.querySelector('a[data-track-event="sticky_price_range_clicked"]');
 const stickyTextButton = quickStickyCta?.querySelector('a[data-track-event="sticky_text_clicked"]');
-const routeToggle = document.querySelector(".route-toggle");
+const routeSelectionSticky = document.querySelector(".route-selection-sticky");
 const routeButtons = document.querySelectorAll("[data-route-option]");
 const axleButtons = document.querySelectorAll("[data-axle-option]");
 const packagePrices = document.querySelectorAll("[data-package-price]");
@@ -216,21 +216,21 @@ function updatePackageBars() {
 }
 
 function setupRouteToggleObserver() {
-  if (!routeToggle || !packageGridEnd) return;
+  if (!routeSelectionSticky || !packageGridEnd) return;
   if (routeToggleObserver) {
     routeToggleObserver.disconnect();
     routeToggleObserver = undefined;
   }
 
   if (!window.matchMedia("(min-width: 860px)").matches) {
-    routeToggle.classList.remove("is-hidden");
+    routeSelectionSticky.classList.remove("is-hidden");
     return;
   }
 
   routeToggleObserver = new IntersectionObserver(
     ([entry]) => {
       const passedCards = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-      routeToggle.classList.toggle("is-hidden", passedCards);
+      routeSelectionSticky.classList.toggle("is-hidden", passedCards);
     },
     {
       root: null,
