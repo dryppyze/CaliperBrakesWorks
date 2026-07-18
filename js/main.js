@@ -136,7 +136,7 @@ function setPackageRoute(route) {
   if (axleNoteTitle && axleNoteBody) {
     if (axleMultiplier === 2) {
       axleNoteTitle.textContent = "4-wheel pricing:";
-      axleNoteBody.textContent = "All four wheels are shown together so you can see the full budget. Switch to 2 wheels if you only need one front or rear pair.";
+      axleNoteBody.textContent = "All four wheels are shown together so you can see the full budget. Switch to 2 wheels only if you need one front or rear pair.";
     } else {
       axleNoteTitle.textContent = "2-wheel pricing:";
       axleNoteBody.textContent = "This view shows one front pair or one rear pair. Switch to all 4 wheels to see the combined budget.";
