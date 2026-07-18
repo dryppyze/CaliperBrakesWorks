@@ -497,8 +497,14 @@ section[id] {
 }
 
 @media (min-width: 860px) {
+  .hero-headline {
+    overflow: visible;
+  }
+
   .hero-headline h1 {
-    max-width: min(100%, 820px);
+    max-width: 100%;
+    line-height: 1.02;
+    margin-bottom: 1.1rem;
   }
 }
 
@@ -1160,6 +1166,54 @@ section[id] {
   display: grid;
   gap: 0.8rem;
   transition: opacity 180ms ease, transform 180ms ease, max-height 180ms ease, margin 180ms ease, padding 180ms ease;
+}
+
+.axle-toggle {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.axle-option {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 0;
+  padding: 0.95rem 1rem;
+  text-align: left;
+  color: var(--ink);
+  background: #f7f9fc;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: none;
+  transition: none;
+}
+
+.axle-option span {
+  color: var(--muted-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.axle-option strong {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.12;
+}
+
+.axle-option.is-selected {
+  background: #fff7f7;
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px rgba(255, 48, 52, 0.18);
+  opacity: 1;
+}
+
+.axle-option.is-selected span {
+  color: var(--red);
+}
+
+.axle-option:not(.is-selected) {
+  opacity: 0.7;
 }
 
 .route-toggle.is-hidden {
@@ -2482,6 +2536,10 @@ legend {
     line-height: 1.3;
   }
 
+  .mobile-route-warning span[data-axle-summary] {
+    text-transform: none;
+  }
+
   .mobile-price-matrix {
     display: grid;
     grid-template-columns: minmax(54px, 0.82fr) repeat(3, minmax(0, 1fr));
@@ -2867,6 +2925,11 @@ legend {
 @media (min-width: 1120px) {
   h1 {
     font-size: 5.4rem;
+  }
+
+  .hero-headline h1 {
+    max-width: 14ch;
+    line-height: 1.04;
   }
 
   h2 {

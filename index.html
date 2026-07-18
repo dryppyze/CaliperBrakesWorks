@@ -306,14 +306,25 @@
               </button>
             </div>
 
+            <div class="axle-toggle" aria-label="Wheel count estimate selection">
+              <button class="axle-option" type="button" data-axle-option="pair" aria-pressed="false">
+                <span>2 wheels</span>
+                <strong>Front or rear pair</strong>
+              </button>
+              <button class="axle-option is-selected" type="button" data-axle-option="full" aria-pressed="true">
+                <span>All 4 wheels</span>
+                <strong>Front and rear combined</strong>
+              </button>
+            </div>
+
             <div class="mobile-route-summary" data-mobile-route-summary aria-live="polite">
               <div class="mobile-route-summary-head">
                 <span>SELECTED PRICING PATH</span>
                 <strong data-route-label>Bring Your Own Parts</strong>
               </div>
-              <p class="mobile-route-warning"><span aria-hidden="true">⚠</span> One-axle pricing</p>
+              <p class="mobile-route-warning"><span aria-hidden="true">⚠</span> <span data-axle-summary>4-wheel pricing</span></p>
               <div class="mobile-price-matrix" aria-label="Mobile price range preview">
-                <span>Service<br>(one axle)</span>
+                <span>Service<br>(selected wheels)</span>
                 <span>Most sedans</span>
                 <span>Crossovers/SUVs</span>
                 <span>Trucks/Large SUVs</span>
@@ -333,7 +344,7 @@
             </div>
           </div>
 
-          <p class="pricing-transparency-note"><span aria-hidden="true">⚠</span> <strong>One-axle pricing:</strong> one axle means both front wheels or both rear wheels. For a rough four-wheel budget, double the displayed one-axle range. Your exact front-and-rear estimate depends on the parts and labour required for each axle.</p>
+          <p class="pricing-transparency-note"><span aria-hidden="true">⚠</span> <strong data-axle-note-title>4-wheel pricing:</strong> <span data-axle-note-body>All four wheels are shown together so you can see the full budget. Switch to 2 wheels if you only need one front or rear pair.</span></p>
 
           <div class="package-note">
             <h3>What changes the estimate</h3>
@@ -345,7 +356,7 @@
             <article class="package-card" data-package-card="minimum">
               <p class="card-label">Brake Pad Replacement</p>
               <h3>Brake Pad Replacement</h3>
-              <p>Brake pads installed on one axle: both front wheels or both rear wheels.</p>
+              <p>Brake pads installed on the selected wheel count: 2 wheels or all 4 wheels.</p>
               <p class="price-helper">Planning range by vehicle type:</p>
               <p class="service-time">Typical appointment target: 2-4 hours.</p>
               <div class="vehicle-bars" aria-label="Minimum service estimate by vehicle type">
@@ -370,7 +381,7 @@
             <article class="package-card" data-package-card="rotor">
               <p class="card-label">Brake Pads and Rotors</p>
               <h3>Brake Pads and Rotors</h3>
-              <p>Brake pads plus two rotors for one axle: both front wheels or both rear wheels.</p>
+              <p>Brake pads plus two rotors for the selected wheel count: 2 wheels or all 4 wheels.</p>
               <p class="price-helper">Planning range by vehicle type:</p>
               <p class="service-time">Typical appointment target: 2-4 hours.</p>
               <div class="vehicle-bars" aria-label="Brake and rotor estimate by vehicle type">
@@ -395,7 +406,7 @@
             <article class="package-card package-card-featured" data-package-card="bundle">
               <p class="card-label">Most popular</p>
               <h3>Brake Pads and Rotors + Oil Change</h3>
-              <p>Brake pads plus two rotors for one axle, with an oil change in the same appointment.</p>
+              <p>Brake pads plus two rotors for the selected wheel count, with an oil change in the same appointment.</p>
               <p class="price-helper">Planning range by vehicle type:</p>
               <p class="service-time">Typical appointment target: 2-4 hours. Oil service adds about 20 minutes.</p>
               <div class="vehicle-bars" aria-label="Brakes, rotors, and oil estimate by vehicle type">
@@ -419,7 +430,7 @@
           </div>
 
           <p class="pricing-range-note">
-            These are planning ranges for common vehicles, not a final quote. Your exact written estimate depends on the vehicle, front or rear axle, selected parts, rotor size, electronic parking brake setup, and current supplier pricing.
+            These are planning ranges for common vehicles, not a final quote. Your exact written estimate depends on the vehicle, selected wheel count, selected parts, rotor size, electronic parking brake setup, and current supplier pricing.
           </p>
 
           <div class="package-grid-end" aria-hidden="true"></div>
@@ -525,7 +536,7 @@
             </article>
             <article class="review-card">
               <div class="review-stars" aria-label="5 out of 5 stars">★★★★★</div>
-              <blockquote>"Just told me what was needed and what wasn’t. Felt normal and not sales-y."</blockquote>
+              <blockquote>"Loved how clear everything was. I’d come back here without hesitation and already told a friend to text for a quote."</blockquote>
               <p class="review-source">Chris D. - 2019 Mazda3 - Cranston</p>
             </article>
           </div>
@@ -602,7 +613,7 @@
             </article>
             <article class="faq-card">
               <h3>What does one axle mean?</h3>
-              <p>One axle means both front wheels or both rear wheels. Front and rear axles are estimated separately unless both are requested.</p>
+              <p>2 wheels means one front pair or one rear pair. All 4 wheels means both pairs combined. Switch the toggle above to see either view.</p>
             </article>
             <article class="faq-card">
               <h3>What happens with supply + install parts?</h3>

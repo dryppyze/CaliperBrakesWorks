@@ -6,17 +6,22 @@ const stickyPriceButton = quickStickyCta?.querySelector('a[data-track-event="sti
 const stickyTextButton = quickStickyCta?.querySelector('a[data-track-event="sticky_text_clicked"]');
 const routeToggle = document.querySelector(".route-toggle");
 const routeButtons = document.querySelectorAll("[data-route-option]");
+const axleButtons = document.querySelectorAll("[data-axle-option]");
 const packagePrices = document.querySelectorAll("[data-package-price]");
 const mobilePrices = document.querySelectorAll("[data-mobile-price]");
 const staticPrices = document.querySelectorAll("[data-static-price]");
 const packageBars = document.querySelectorAll(".vehicle-bars");
 const routeLabel = document.querySelector("[data-route-label]");
+const axleSummary = document.querySelector("[data-axle-summary]");
+const axleNoteTitle = document.querySelector("[data-axle-note-title]");
+const axleNoteBody = document.querySelector("[data-axle-note-body]");
 const routeNote = document.querySelector("[data-route-note]");
 const packagesSection = document.querySelector(".packages-section");
 const packageGridEnd = document.querySelector(".package-grid-end");
 const nextStepCta = document.querySelector(".package-cta");
 let routeToggleObserver;
 let stickyTextIdleTimer;
+let axleMultiplier = 2;
 
 const PRICE_CONFIG = {
   static: {
@@ -27,16 +32,16 @@ const PRICE_CONFIG = {
     prices: {
       "minimum-sedan": "$139 to $179",
       "minimum-suv": "$159 to $219",
-      "minimum-truck": "$189 to $259",
+      "minimum-truck": "$309 to $344",
       "rotor-sedan": "$200 to $324",
       "rotor-suv": "$249 to $489",
-      "rotor-truck": "$349 to $689",
+      "rotor-truck": "$359 to $399",
       "bundle-sedan": "$275 to $429",
       "bundle-suv": "$339 to $609",
-      "bundle-truck": "$469 to $829"
+      "bundle-truck": "$479 to $549"
     },
     note:
-      "Parts + labour ranges include a supplier parts allowance. Vehicle-specific parts are paid before ordering. Labour is paid after service. Vehicle type, front or rear axle, supplier pricing, rotor size, rust, seized hardware, and electronic parking brake setup can move the written estimate."
+      "Parts + labour ranges include a supplier parts allowance. Vehicle-specific parts are paid before ordering. Labour is paid after service. Vehicle type, wheel count, supplier pricing, rotor size, rust, seized hardware, and electronic parking brake setup can move the written estimate."
   },
   customer: {
     prices: {
@@ -109,19 +114,33 @@ function setPackageRoute(route) {
   packagePrices.forEach((price) => {
     const key = price.dataset.packagePrice;
     if (selectedData.prices[key]) {
-      price.textContent = selectedData.prices[key];
+      price.textContent = scaleRange(selectedData.prices[key], axleMultiplier);
     }
   });
 
   mobilePrices.forEach((price) => {
     const key = price.dataset.mobilePrice;
     if (selectedData.prices[key]) {
-      price.textContent = compactRange(selectedData.prices[key]);
+      price.textContent = compactRange(scaleRange(selectedData.prices[key], axleMultiplier));
     }
   });
 
   if (routeLabel) {
     routeLabel.textContent = routeLabels[selectedRoute];
+  }
+
+  if (axleSummary) {
+    axleSummary.textContent = axleMultiplier === 2 ? "4-wheel pricing" : "2-wheel pricing";
+  }
+
+  if (axleNoteTitle && axleNoteBody) {
+    if (axleMultiplier === 2) {
+      axleNoteTitle.textContent = "4-wheel pricing:";
+      axleNoteBody.textContent = "All four wheels are shown together so you can see the full budget. Switch to 2 wheels if you only need one front or rear pair.";
+    } else {
+      axleNoteTitle.textContent = "2-wheel pricing:";
+      axleNoteBody.textContent = "This view shows one front pair or one rear pair. Switch to all 4 wheels to see the combined budget.";
+    }
   }
 
   if (routeNote) {
@@ -142,6 +161,29 @@ function setStaticPrices() {
 
 function compactRange(value) {
   return value.replace(/\s+to\s+/g, "-");
+}
+
+function parseRange(value) {
+  const match = String(value).match(/\$?([\d,]+)\s+to\s+\$?([\d,]+)/i);
+  if (!match) return null;
+  return {
+    low: Number(match[1].replace(/,/g, "")),
+    high: Number(match[2].replace(/,/g, ""))
+  };
+}
+
+function formatMoney(amount) {
+  return `$${Math.round(amount).toLocaleString("en-CA")}`;
+}
+
+function formatRange(low, high) {
+  return `${formatMoney(low)} to ${formatMoney(high)}`;
+}
+
+function scaleRange(value, multiplier) {
+  const parsed = parseRange(value);
+  if (!parsed) return value;
+  return formatRange(parsed.low * multiplier, parsed.high * multiplier);
 }
 
 function parseUpperBound(value) {
@@ -225,6 +267,20 @@ routeButtons.forEach((button) => {
     const route = button.dataset.routeOption || "supply";
     setPackageRoute(route);
     trackEvent("parts_route_selected", { route });
+  });
+});
+
+axleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const option = button.dataset.axleOption || "full";
+    axleMultiplier = option === "pair" ? 1 : 2;
+    axleButtons.forEach((el) => {
+      const isSelected = el === button;
+      el.classList.toggle("is-selected", isSelected);
+      el.setAttribute("aria-pressed", String(isSelected));
+    });
+    setPackageRoute(document.querySelector(".route-option.is-selected")?.dataset.routeOption || "customer");
+    trackEvent("axle_view_selected", { view: option });
   });
 });
 
